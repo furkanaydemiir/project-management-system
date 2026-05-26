@@ -1,6 +1,6 @@
-# Proje Yönetim Sistemi (Project Management System)
+# Proje Yönetim Sistemi - Admin Dashboard
 
-Bu proje, ekiplerin ve projelerin verimli bir şekilde yönetilmesini sağlayan, React ve Redux Toolkit kullanılarak geliştirilmiş modern bir web uygulamasıdır. Kullanıcılar yeni projeler oluşturabilir, ekipler kurabilir ve projelerin ilerlemesini takip edebilir.
+Bu proje, ekiplerin ve projelerin verimli bir şekilde yönetilmesini sağlayan, React ve Redux Toolkit kullanılarak geliştirilmiş modern bir **admin dashboard** uygulamasıdır. Kullanıcılar yeni projeler oluşturabilir, ekipler kurabilir ve projelerin ilerlemesini takip edebilir.
 
 ## 🚀 Özellikler
 
