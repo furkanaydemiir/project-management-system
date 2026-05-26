@@ -13,32 +13,41 @@ import TableContainer from "@mui/material/TableContainer";
 
 function OnGoing() {
   const projects = useSelector((state) => state.projects);
-  
+  const teams = useSelector((state) => state.team.teams);
+
   return (
-    <TableContainer sx={{mt:4}} component={Paper}>
-      <Table aria-label="table" sx={{ minWidth: 650,}}>
-        
+    <TableContainer sx={{ mt: 4 }} component={Paper}>
+      <Typography variant="h6" sx={{ p: 2 }}>Tüm Projeler</Typography>
+      <Table aria-label="table" sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
             <TableCell>Proje İsmi</TableCell>
-            <TableCell>Proje Kategorisi</TableCell>
-            <TableCell>Proje Açıklaması</TableCell>
-            <TableCell>Başlangıç Tarihi</TableCell>
-            <TableCell>Bitiş Tarihi</TableCell>
+            <TableCell>Kategori</TableCell>
+            <TableCell>Başlangıç / Bitiş</TableCell>
+            <TableCell>Atanan Ekip</TableCell>
             <TableCell>Durum</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {projects.map((project)=>(
-            <TableRow key={project.id}>
-              <TableCell>{project.projectName}</TableCell>
-              <TableCell>{project.projectCategory}</TableCell>
-              <TableCell>{project.projectCaption}</TableCell>
-              <TableCell>{project.startDate}</TableCell>
-              <TableCell>{project.deadline}</TableCell>
-           
+          {projects.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={5} align="center">Henüz proje bulunmamaktadır.</TableCell>
             </TableRow>
-          ))}
+          )}
+          {projects.map((project) => {
+            const assignedTeam = teams.find(t => t.id === project.assignedTeamId);
+            return (
+              <TableRow key={project.id}>
+                <TableCell>{project.projectName}</TableCell>
+                <TableCell>{project.projectCategory}</TableCell>
+                <TableCell>{project.startDate} - {project.deadline}</TableCell>
+                <TableCell>{assignedTeam ? assignedTeam.name : "-"}</TableCell>
+                <TableCell sx={{ color: project.status === "Devam ediyor" ? "primary.main" : "warning.main", fontWeight: "bold" }}>
+                  {project.status || "Atama bekliyor"}
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>
